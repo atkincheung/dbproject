@@ -5,13 +5,13 @@ from django.core.serializers.json import DjangoJSONEncoder
 from django.db.models import Q
 
 class Command(BaseCommand):
-    help = 'Manage listings table: format, import from JSON, export to JSON, or clean data'
+    help = 'Manage listings table: clear, import from JSON, export to JSON, or clean data'
 
     def add_arguments(self, parser):
         parser.add_argument(
             '--action',
             type=str,
-            help='Action to perform: format, import, export, or data_clean',
+            help='Action to perform: clear, import, export, or data_clean',
             required=True
         )
         parser.add_argument(
@@ -25,7 +25,7 @@ class Command(BaseCommand):
         action = options['action']
         file_path = options.get('file')
 
-        if action == 'format':
+        if action == 'clear':
             self.format_table()
         elif action == 'import':
             if not file_path:
